@@ -18,7 +18,7 @@ var SpriteSheet = new function () {
             Math.floor(x), Math.floor(y),
             s.w, s.h);
     };
-}
+};
 
 var Game = new function () {
     this.initialize = function (canvasElementId, sprite_data, callback) {
@@ -41,15 +41,53 @@ var Game = new function () {
     this.setupInput = function () {
         window.addEventListener('keydown', function (e) {
             if(KEY_CODES[event.keyCode]) {
-                Game.keys[KEY_CODES[event.keyCode]] == true;
+                Game.keys[KEY_CODES[event.keyCode]] = true;
                 e.preventDefault();
             }
         }, false);
         window.addEventListener('keyup', function (e) {
             if (KEY_CODES[event.keyCode]) {
-                Game.keys[KEY_CODES[event.keyCode]] == false;
+                Game.keys[KEY_CODES[event.keyCode]] = false;
                 e.preventDefault();
             }
         }, false);
     }
-}
+
+    // Game Loop
+    var boards = [];
+
+    this.loop = function() {
+        var dt = 30 / 1000;
+
+        for(var i=0,len = boards.length;i<len;i++) {
+            if(boards[i]) {
+                boards[i].step(dt);
+                boards[i].draw(Game.ctx);
+            }
+        }
+
+        setTimeout(Game.loop,30);
+    };
+
+    // Change an active game board
+    this.setBoard = function(num,board) { boards[num] = board; };
+};
+
+var TitleScreen = function TitleScreen(title, subtitle, callback) {
+    var up = false;
+
+    this.step = function (dt) {
+        if(!Game.keys['fire']) up = true;
+        if(up && Game.keys['fire'] && callback) callback();
+    };
+    this.draw = function (ctx) {
+        ctx.fillStyle = "#FFFFFF";
+        ctx.textAlign = "center";
+
+        ctx.font = "bold 40px bangers";
+        ctx.fillText(title, Game.width/2, Game.height/2);
+
+        ctx.font = "bold 20px bangers";
+        ctx.fillText(subtitle, Game.width/2, Game.height/2 + 40);
+    };
+};
