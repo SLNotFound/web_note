@@ -1,52 +1,19 @@
-// let canvas = document.getElementById("game");
-//
-// let ctx = canvas.getContext && canvas.getContext("2d");
-//
-// if (!ctx) {
-//     alert("Please upgrade your browser");
-// } else {
-//     startGame();
-// }
-//
-// function startGame() {
-//     SpriteSheet.load({
-//         ship: { sx: 0, sy: 0, w: 37, h: 42, frames: 1 }
-//         // ship: { sx: 37, sy: 0, w: 42, h: 42, frames: 1 }
-//         // ship: { sx: 79, sy: 0, w: 37, h: 42, frames: 1 }
-//         // ship: { sx: 116, sy: 0, w: 43, h: 42, frames: 1 }
-//         // ship: { sx: 159, sy: 0, w: 43, h: 42, frames: 1 }
-//     }, function () {
-//         SpriteSheet.draw(ctx, "ship", 0, 0);
-//         SpriteSheet.draw(ctx, "ship", 100, 50);
-//         SpriteSheet.draw(ctx, "ship", 150, 100);
-//     });
-//     // ctx.fillStyle = "#FFFF00";
-//     // ctx.fillRect(50,100,380,400);
-//     //
-//     // ctx.fillStyle = "rgba(0,0,128,0.8);";
-//     // ctx.fillRect(25,50,380,400);
-//     //
-//     // var img = new Image();
-//     // img.onload = function() {
-//     //     ctx.drawImage(img,100,100);
-//     // }
-//     // img.src = 'images/sprites.png';
-// }
-
 var sprites = {
     ship: { sx: 0, sy: 0, w: 37, h: 42, frames: 1 }
 };
 
 var startGame = function() {
-    // SpriteSheet.draw(Game.ctx,"ship",100,100,0);
     Game.setBoard(0,new Starfield(20,0.4,100,true))
     Game.setBoard(1,new Starfield(50,0.6,100))
     Game.setBoard(2,new Starfield(100,1.0,50));
-    Game.setBoard(3,new TitleScreen("Alien Invasion", "Press space to start playing", playGame));
+    Game.setBoard(3,new TitleScreen("Alien Invasion",
+        "Press fire to start playing",
+        playGame));
 }
 
-var playGame = function () {
-    Game.setBoard(3, new TitleScreen("Alien Invasion", "Game Started..."));
+
+var playGame = function() {
+    Game.setBoard(3,new PlayerShip());
 }
 
 window.addEventListener("load", function() {
@@ -113,4 +80,35 @@ var Starfield = function(speed,opacity,numStars,clear) {
         offset += dt * speed;
         offset = offset % stars.height;
     }
-};
+}
+
+
+var PlayerShip = function() {
+    this.w =  SpriteSheet.map['ship'].w;
+    this.h =  SpriteSheet.map['ship'].h;
+    this.x = Game.width/2 - this.w / 2;
+    this.y = Game.height - 10 - this.h;
+    this.vx = 0;
+
+    this.maxVel = 200;
+
+    this.step = function(dt) {
+        if(Game.keys['left']) { this.vx = -this.maxVel; }
+        else if(Game.keys['right']) { this.vx = this.maxVel; }
+        else { this.vx = 0; }
+
+        this.x += this.vx * dt;
+
+        if(this.x < 0) { this.x = 0; }
+        else if(this.x > Game.width - this.w) {
+            this.x = Game.width - this.w
+        }
+    }
+
+    this.draw = function(ctx) {
+        SpriteSheet.draw(ctx,'ship',this.x,this.y,0);
+    }
+}
+
+
+
