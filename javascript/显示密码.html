@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>显示密码</title>
+</head>
+<style>
+
+</style>
+<body>
+    <div class="container">
+        <input type="text" id="username" placeholder="用户名/邮箱/手机"><br>
+        <input type="password" id="password"><button>显示密码</button>
+    </div>
+
+    <script>
+        let btn = document.querySelector("button");
+        let pwd = document.querySelector("#password");
+        btn.onclick = function () {
+            pwd.type = "text";
+        }
+    </script>
+</body>
+</html>

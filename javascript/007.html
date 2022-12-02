@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>007</title>
+</head>
+<body>
+    <button id="alice">alice</button>
+    <button id="bob">bob</button>
+    <p class="hello"></p>
+
+    <script>
+        let alice = document.querySelector("#alice");
+        let bob = document.querySelector("#bob");
+
+        let hello = document.querySelector(".hello");
+
+        alice.onclick = function () {
+            hello.textContent = "My name is " + alice.textContent;
+        }
+
+        bob.onclick = function () {
+            hello.textContent = "My name is " + bob.textContent;
+        }
+    </script>
+</body>
+</html>
