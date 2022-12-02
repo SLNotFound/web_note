@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>005</title>
+</head>
+<body>
+<!--    点击按钮显示当前时间-->
+    <button>显示当前时间</button>
+    <div>某个时间</div>
+    <script>
+        let myDiv = document.querySelector("div");
+        let myBtn = document.querySelector("button");
+        myBtn.onclick = function () {
+            myDiv.innerText = getDate();
+        };
+
+        function getDate() {
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDay();
+            var dates = date.getDate();
+            var weekday = ["星期天","星期一","星期二","星期三","星期四","星期五","星期六"];
+            var hour = date.getHours();
+            var minute = date.getMinutes();
+            var seconds = date.getSeconds();
+            return "今天是 " + year + "年" + month + "月" + dates + "日" + "," + weekday[day] + ",时间是：" + hour +":" + minute +":" +seconds;
+        }
+    </script>
+</body>
+</html>
