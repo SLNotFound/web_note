@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>派生选择器</title>
+    <style>
+        /*span是行内元素 无法设置宽高，必须设置成块元素*/
+        div > span {
+            display: block;
+            width: 200px;
+            height: 200px;
+            background-color: #66ccff;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span>12312312</span>
+    </div>
+</body>
+</html>
