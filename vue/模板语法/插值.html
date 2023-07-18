@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>插值</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<body>
+    <div id="app">
+        <span>{{ message }}</span>
+        <span v-once>这个将不会改变：{{ message1 }}</span>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data : {
+                message: "Hello Vue!",
+                message1: "123",
+            } 
+        })
+    </script>
+</body>
+</html>
