@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div  id="app">
+
+    
+        <form action="">
+            姓名：
+            <input type="text" v-model="data.name" placeholder="">
+            <br>
+            性别：
+            <input type="radio" id="man" value="One" v-model="data.sex">
+            <label for="man">男</label>
+            <input type="radio" id="woman" value="Two" v-model="data.sex">
+            <label for="woman">女</label>
+            <br>
+            兴趣：
+            <input type="checkbox" id="book" value="book" v-model="data.interest">
+            <label for="book">阅读</label>
+            <input type="checkbox" id="swim" value="swim" v-model="data.interest">
+            <label for="swim">游泳</label>
+            <input type="checkbox" id="game" value="game" v-model="data.interest">
+            <label for="game">游戏</label>
+            <input type="checkbox" id="sing" value="sing" v-model="data.interest">
+            <label for="sing">唱歌</label>
+            <br>
+            身份：
+            <select v-model="data.identity">
+                <option value="teacher" selected>教师</option>
+                <option value="doctor">医生</option>
+                <option value="lawyer">律师</option>
+            </select>
+        </form>
+        
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                data: {
+                    name: '',
+                    sex: '',
+                    interest: [],
+                    identity: ''
+                }
+            }
+        })
+    </script>
+</body>
+</html>
