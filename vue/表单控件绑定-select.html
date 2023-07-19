@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单控件绑定</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <form action="" id="app">
+        
+        <select v-model="bizLine">
+            <option value="flash" selected>快车</option>
+            <option value="premium">专车</option>
+            <option value="bus">巴士</option>
+        </select>
+        <br>
+        <span>selected： {{ bizLine }}</span>
+    </form>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                bizLine: []
+            }
+        })
+    </script>
+</body>
+</html>
