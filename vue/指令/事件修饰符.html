@@ -12,8 +12,8 @@
         年龄：<input type="text" v-model="age"> <br>
 
         <h3>@事件名.stop  阻止冒泡</h3>
-        <div class="father" @click="fatherFn">
-            <div class="son" @click="sonFn">儿子</div>
+        <div class="father" @click="fatherFn" style="width: 200px; height: 200px; background-color: pink;">
+            <div class="son" @click.stop="sonFn" style="width: 100px; height: 100px; background-color: blue;">儿子</div>
         </div>
 
         <h3>@事件名.prevent  阻止默认行为</h3>
