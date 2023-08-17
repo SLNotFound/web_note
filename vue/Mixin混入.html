@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mixin混入</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    // mixin 混入
+    const myMixin = {
+        data() {
+            return { number: 2 }
+        }
+    };
+
+    const app = Vue.createApp({
+        // data() {
+        //     return {
+        //         number: 1,
+        //     }
+        // },
+        mixins: [myMixin],
+        methods: {
+            handleClick() {
+                console.log("handleClick")
+            }
+        },
+        template: `
+            <div>
+                <div>{{ number }}</div>
+                <button @click="handleClick">增加</button>
+            </div>
+        `
+    });
+
+    const vm = app.mount("#app");
+</script>
+</html>
