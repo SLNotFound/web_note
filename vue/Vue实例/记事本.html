@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <section id="app">
+        <header class="header">
+            <h1>记事本</h1>
+            <input placeholder="请输入任务" class="new-todo" v-model="todoName">
+            <button class="add" @click="add">添加任务</button>
+        </header>
+
+        <section class="main">
+            <ul class="todo-list">
+                <li class="todo" v-for="(item, index) in todoList" :key="item.id">
+                    <div class="view">
+                        <span class="index">{{ index + 1}}</span>
+                        <label>{{ item.task }}</label>
+                        <button class="destroy" @click="del(item.id)"></button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <footer class="footer" v-show="todoList.length > 0">
+            <span class="todo-count">合计：<strong>{{ todoList.length }}</strong></span>
+            <button class="clear-completed" @click="clear">清空任务</button>
+        </footer>
+    </section>
+
+    <script src="js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                todoName: '',
+                todoList: [
+                    {id: 1, task: "做饭"},
+                    {id: 2, task: "吃饭"},
+                    {id: 3, task: "洗碗"},
+                    {id: 4, task: "扫地"},
+                ]
+            },
+            methods: {
+                del (id) {
+                    this.todoList = this.todoList.filter(item => item.id !== id)
+                },
+                add () {
+                    if (this.todoName.trim() === '') {
+                        alert('请输入任务名称')
+                        return
+                    }
+                    this.todoList.unshift({
+                        id: +new Date(),
+                        task: this.todoName
+                    })
+                    this.todoName = ''
+                },
+                clear () {
+                    this.todoList = []
+                }
+            }
+        })
+    </script>
+</body>
+</html>
