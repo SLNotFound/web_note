@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>表单修饰符</title>
 </head>
 <body>
+
+    <!-- .lazy 修饰符可以在我们输入完，光标离开才更新视图 -->
     <div id="app">
-        <h3>@keyup.enter  -> 监听键盘回车事件</h3>
-        <input type="text" v-model="username">
+        <h1>表单修饰符</h1>
+        <input type="text" v-model.lazy="inputValue"> <br>
+        显示内容：<span>{{inputValue}}</span>
     </div>
 
 
@@ -17,11 +20,8 @@
         const app = new Vue({
             el: '#app',
             data: {
-                username: ''
+                inputValue: ''
             },
-            methods: {
-                
-            }
         })
     </script>
 </body>

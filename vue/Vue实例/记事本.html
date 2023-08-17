@@ -11,7 +11,7 @@
     <section id="app">
         <header class="header">
             <h1>记事本</h1>
-            <input placeholder="请输入任务" class="new-todo" v-model="todoName">
+            <input @keyup.enter="add" placeholder="请输入任务" class="new-todo" v-model="todoName">
             <button class="add" @click="add">添加任务</button>
         </header>
 
